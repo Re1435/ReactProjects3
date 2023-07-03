@@ -1,0 +1,49 @@
+import Navbar from '../Navbar'
+
+import ThemeContext from '../../context/ThemeContext'
+
+import './index.css'
+
+const About = () => {
+  const renderLightAbout = () => (
+    <div className="about-container-light">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/about-light-img.png"
+        className="about-image"
+        alt="about"
+      />
+      <h1 className="about-heading-light">About</h1>
+    </div>
+  )
+
+  const renderDarkAbout = () => (
+    <div className="about-container-dark">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/about-dark-img.png"
+        className="about-image"
+        alt="about"
+      />
+      <h1 className="about-heading-dark">About</h1>
+    </div>
+  )
+
+  return (
+    <ThemeContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+
+        return (
+          <>
+            <div className="about-home-container">
+              <Navbar />
+              {!isDarkTheme ? renderLightAbout() : renderDarkAbout()}
+            </div>
+          </>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
+}
+
+export default About
+
